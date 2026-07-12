@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+        {% block title %}
+        Trekking Management
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <h2>Trekking Management System</h2>
+
+    <hr>
+
+    <a href="/">Home</a> |
+    <a href="/about">About</a> |
+    <a href="/contact">Contact</a> |
+    <a href="/login">Login</a> |
+    <a href="/register">Register</a>
+
+    <hr>
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+
+</html>

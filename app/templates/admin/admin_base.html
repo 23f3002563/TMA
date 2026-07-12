@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}Admin{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <h2>Trekking Management System</h2>
+
+    <nav>
+
+        <a href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+
+        <a href="{{ url_for('admin.treks') }}">Treks</a>
+
+        <a href="{{ url_for('admin.users') }}">Users</a>
+
+        <a href="{{ url_for('admin.staff') }}">Staff</a>
+
+        <a href="{{ url_for('admin.bookings') }}">Bookings</a>
+
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+
+    </nav>
+
+</header>
+
+<hr>
+
+<div class="container">
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+
+</body>
+
+</html>
