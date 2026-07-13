@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Staff
+{% endblock %}
+
+{% block content %}
+
+<h2>Manage Staff</h2>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Experience</th>
+        <th>Specialization</th>
+    </tr>
+
+    {% for staff in staff_members %}
+
+    <tr>
+
+        <td>{{ staff.id }}</td>
+
+        <td>{{ staff.user.name }}</td>
+
+        <td>{{ staff.user.email }}</td>
+
+        <td>{{ staff.phone }}</td>
+
+        <td>{{ staff.experience }} Years</td>
+
+        <td>{{ staff.specialization }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

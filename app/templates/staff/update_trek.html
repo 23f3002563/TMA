@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+Update Trek
+{% endblock %}
+
+{% block content %}
+
+<h2>Update Trek</h2>
+
+<form method="POST" class="auth-form">
+
+    <label>Available Slots</label>
+
+    <input
+        type="number"
+        name="available_slots"
+        value="{{ trek.available_slots }}"
+        required
+    >
+
+    <label>Status</label>
+
+    <select name="status">
+
+        <option value="Open"
+        {% if trek.status=="Open" %}selected{% endif %}>
+        Open
+        </option>
+
+        <option value="Closed"
+        {% if trek.status=="Closed" %}selected{% endif %}>
+        Closed
+        </option>
+
+        <option value="Started"
+        {% if trek.status=="Started" %}selected{% endif %}>
+        Started
+        </option>
+
+        <option value="Ongoing"
+        {% if trek.status=="Ongoing" %}selected{% endif %}>
+        Ongoing
+        </option>
+
+        <option value="Completed"
+        {% if trek.status=="Completed" %}selected{% endif %}>
+        Completed
+        </option>
+
+    </select>
+
+    <button type="submit">
+        Update Trek
+    </button>
+
+</form>
+
+{% endblock %}

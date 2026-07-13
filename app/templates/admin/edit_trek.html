@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Trek
+{% endblock %}
+
+{% block content %}
+
+<h2>Edit Trek</h2>
+
+<form method="POST" class="auth-form">
+
+    <label>Trek Name</label>
+    <input type="text" name="trek_name" value="{{ trek.trek_name }}" required>
+
+    <label>Location</label>
+    <input type="text" name="location" value="{{ trek.location }}" required>
+
+    <label>Difficulty</label>
+    <select name="difficulty">
+
+        <option value="Easy"
+        {% if trek.difficulty=="Easy" %}selected{% endif %}>
+        Easy
+        </option>
+
+        <option value="Moderate"
+        {% if trek.difficulty=="Moderate" %}selected{% endif %}>
+        Moderate
+        </option>
+
+        <option value="Difficult"
+        {% if trek.difficulty=="Difficult" %}selected{% endif %}>
+        Difficult
+        </option>
+
+    </select>
+
+    <label>Duration</label>
+    <input type="number"
+           name="duration"
+           value="{{ trek.duration }}"
+           required>
+
+    <label>Available Slots</label>
+    <input type="number"
+           name="available_slots"
+           value="{{ trek.available_slots }}"
+           required>
+
+    <label>Assign Staff</label>
+
+    <select name="staff_id">
+
+        <option value="">Select Staff</option>
+
+        {% for staff in staff_members %}
+
+        <option value="{{ staff.id }}"
+            {% if trek.staff_id == staff.id %}selected{% endif %}>
+            {{ staff.name }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <button type="submit">
+        Update Trek
+    </button>
+
+</form>
+
+{% endblock %}

@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Trekking Management System{% endblock %}</title>
 
-    <title>
-        {% block title %}
-        Trekking Management
-        {% endblock %}
-    </title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
-    <h2>Trekking Management System</h2>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <a href="{{ url_for('home.home') }}">TrekHub</a>
+        </div>
 
-    <hr>
+        <ul>
+            <li><a href="{{ url_for('home.home') }}">Home</a></li>
+            <li><a href="{{ url_for('home.about') }}">About</a></li>
+            <li><a href="{{ url_for('home.contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+        </ul>
+    </nav>
 
-    <a href="/">Home</a> |
-    <a href="/about">About</a> |
-    <a href="/contact">Contact</a> |
-    <a href="/login">Login</a> |
-    <a href="/register">Register</a>
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
-    <hr>
-
-    {% block content %}
-
-    {% endblock %}
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 TrekHub. All Rights Reserved.</p>
+    </footer>
 
 </body>
-
 </html>

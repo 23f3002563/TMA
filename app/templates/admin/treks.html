@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Treks
+{% endblock %}
+
+{% block content %}
+
+<h2>Manage Treks</h2>
+
+<p style="text-align:center;">
+    <a href="{{ url_for('admin.add_trek') }}">Add New Trek</a>
+</p>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Trek Name</th>
+        <th>Location</th>
+        <th>Difficulty</th>
+        <th>Duration</th>
+        <th>Available Slots</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for trek in treks %}
+
+    <tr>
+
+        <td>{{ trek.id }}</td>
+        <td>{{ trek.trek_name }}</td>
+        <td>{{ trek.location }}</td>
+        <td>{{ trek.difficulty }}</td>
+        <td>{{ trek.duration }} Days</td>
+        <td>{{ trek.available_slots }}</td>
+        <td>{{ trek.status }}</td>
+
+        <td>
+            <a href="{{ url_for('admin.edit_trek', trek_id=trek.id) }}">Edit</a> |
+            <a href="{{ url_for('admin.delete_trek', trek_id=trek.id) }}">Delete</a>
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

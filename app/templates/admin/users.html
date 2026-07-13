@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Users
+{% endblock %}
+
+{% block content %}
+
+<h2>Manage Users</h2>
+
+<form method="GET" style="text-align:center; margin:20px;">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search user by name"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+
+    {% for user in users %}
+
+    <tr>
+
+        <td>{{ user.id }}</td>
+
+        <td>{{ user.name }}</td>
+
+        <td>{{ user.email }}</td>
+
+        <td>{{ user.role }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

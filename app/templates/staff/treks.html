@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Assigned Treks
+{% endblock %}
+
+{% block content %}
+
+<h2>Assigned Treks</h2>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Trek Name</th>
+        <th>Location</th>
+        <th>Difficulty</th>
+        <th>Duration</th>
+        <th>Available Slots</th>
+        <th>Status</th>
+    </tr>
+
+    {% for trek in treks %}
+
+    <tr>
+
+        <td>{{ trek.id }}</td>
+        <td>{{ trek.trek_name }}</td>
+        <td>{{ trek.location }}</td>
+        <td>{{ trek.difficulty }}</td>
+        <td>{{ trek.duration }} Days</td>
+        <td>{{ trek.available_slots }}</td>
+        <td>{{ trek.status }}</td>
+
+    </tr>
+
+    <td>
+        <a href="{{ url_for('staff.update_trek', trek_id=trek.id) }}">
+            Update
+        </a>
+    </td>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Trek
+{% endblock %}
+
+{% block content %}
+
+<h2>Add New Trek</h2>
+
+<form method="POST" class="auth-form">
+
+    <label>Trek Name</label>
+    <input type="text" name="trek_name" required>
+
+    <label>Location</label>
+    <input type="text" name="location" required>
+
+    <label>Difficulty</label>
+    <select name="difficulty">
+        <option>Easy</option>
+        <option>Moderate</option>
+        <option>Difficult</option>
+    </select>
+
+    <label>Duration (Days)</label>
+    <input type="number" name="duration" required>
+
+    <label>Available Slots</label>
+    <input type="number" name="available_slots" required>
+
+    <button type="submit">Add Trek</button>
+
+</form>
+
+{% endblock %}

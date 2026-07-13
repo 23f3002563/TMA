@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Staff Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2>Staff Dashboard</h2>
+
+<div class="dashboard-cards">
+
+    <div class="card">
+        <h3>Assigned Treks</h3>
+        <p>{{ total_treks }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Registered Trekkers</h3>
+        <p>{{ total_trekkers }}</p>
+    </div>
+
+</div>
+
+{% endblock %}

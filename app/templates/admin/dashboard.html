@@ -14,22 +14,29 @@
 
     <h2>Admin Dashboard</h2>
 
-    <div class="card">
-        <h3>Total Treks : {{ total_treks }}</h3>
-    </div>
+    <div class="dashboard-cards">
 
-    <div class="card">
-        <h3>Total Users : {{ total_users }}</h3>
-    </div>
+        <div class="card">
+            <h3>Total Treks</h3>
+            <p>{{ total_treks }}</p>
+        </div>
 
-    <div class="card">
-        <h3>Total Staff : {{ total_staff }}</h3>
-    </div>
+        <div class="card">
+            <h3>Total Users</h3>
+            <p>{{ total_users }}</p>
+        </div>
 
-    <div class="card">
-        <h3>Total Bookings : {{ total_bookings }}</h3>
-    </div>
+        <div class="card">
+            <h3>Total Staff</h3>
+            <p>{{ total_staff }}</p>
+        </div>
 
+        <div class="card">
+            <h3>Total Bookings</h3>
+            <p>{{ total_bookings }}</p>
+        </div>
+
+    </div>
     {% endblock %}
  </body>
  </html>
