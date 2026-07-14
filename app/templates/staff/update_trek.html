@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "staff/base.html" %}
 
 {% block title %}
 Update Trek
@@ -6,54 +6,126 @@ Update Trek
 
 {% block content %}
 
-<h2>Update Trek</h2>
+<div class="container mt-5">
 
-<form method="POST" class="auth-form">
+    <div class="row justify-content-center">
 
-    <label>Available Slots</label>
+        <div class="col-lg-6">
 
-    <input
-        type="number"
-        name="available_slots"
-        value="{{ trek.available_slots }}"
-        required
-    >
+            <div class="card shadow border-0 rounded-4">
 
-    <label>Status</label>
+                <div class="card-header bg-success text-white text-center py-3">
 
-    <select name="status">
+                    <h3 class="mb-0">
 
-        <option value="Open"
-        {% if trek.status=="Open" %}selected{% endif %}>
-        Open
-        </option>
+                        <i class="bi bi-pencil-square"></i>
+                        Update Trek
 
-        <option value="Closed"
-        {% if trek.status=="Closed" %}selected{% endif %}>
-        Closed
-        </option>
+                    </h3>
 
-        <option value="Started"
-        {% if trek.status=="Started" %}selected{% endif %}>
-        Started
-        </option>
+                </div>
 
-        <option value="Ongoing"
-        {% if trek.status=="Ongoing" %}selected{% endif %}>
-        Ongoing
-        </option>
+                <div class="card-body p-4">
 
-        <option value="Completed"
-        {% if trek.status=="Completed" %}selected{% endif %}>
-        Completed
-        </option>
+                    <form method="POST">
 
-    </select>
+                        <!-- Available Slots -->
 
-    <button type="submit">
-        Update Trek
-    </button>
+                        <div class="mb-4">
 
-</form>
+                            <label class="form-label fw-semibold">
+
+                                <i class="bi bi-people-fill text-success"></i>
+                                Available Slots
+
+                            </label>
+
+                            <input
+                                type="number"
+                                name="available_slots"
+                                value="{{ trek.available_slots }}"
+                                class="form-control">
+
+                        </div>
+
+
+
+                        <!-- Trek Status -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+
+                                <i class="bi bi-flag-fill text-success"></i>
+                                Trek Status
+
+                            </label>
+
+                            <select
+                                name="status"
+                                class="form-select">
+
+                                <option value="Open"
+                                {% if trek.status == "Open" %}selected{% endif %}>
+                                    Open
+                                </option>
+
+                                <option value="Closed"
+                                {% if trek.status == "Closed" %}selected{% endif %}>
+                                    Closed
+                                </option>
+
+                                <option value="Started"
+                                {% if trek.status == "Started" %}selected{% endif %}>
+                                    Started
+                                </option>
+
+                                <option value="Completed"
+                                {% if trek.status == "Completed" %}selected{% endif %}>
+                                    Completed
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Buttons -->
+
+                        <div class="d-flex justify-content-between">
+
+                            <a href="{{ url_for('staff.treks') }}"
+                               class="btn btn-outline-secondary">
+
+                                <i class="bi bi-arrow-left"></i>
+                                Back
+
+                            </a>
+
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-success">
+
+                                <i class="bi bi-check-circle"></i>
+                                Update Trek
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

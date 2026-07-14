@@ -103,7 +103,13 @@ class Booking(db.Model):
         default="Pending"
     )
 
+    # Relationships
+    user = db.relationship(
+        "User",
+        backref="bookings"
+    )
+
+     
+
     def __repr__(self):
         return f"<Booking {self.id}>"
-    
-

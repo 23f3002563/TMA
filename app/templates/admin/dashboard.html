@@ -1,42 +1,98 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
- </head>
- <body>
-    {% extends "admin/admin_base.html" %}
+ {% extends "admin/admin_base.html" %}
 
-    {% block title %}Dashboard{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
-    {% block content %}
+{% block content %}
 
-    <h2>Admin Dashboard</h2>
+<div class="container-fluid">
 
-    <div class="dashboard-cards">
+    <!-- Heading -->
+    <div class="mb-3">
+        <h3 class="fw-bold text-success mb-1">
+            Welcome Admin 👋
+        </h3>
+        <p class="text-muted">
+            Dashboard Overview
+        </p>
+    </div>
 
-        <div class="card">
-            <h3>Total Treks</h3>
-            <p>{{ total_treks }}</p>
+    <!-- Statistics -->
+    <div class="row g-3">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+
+                    <i class="bi bi-tree-fill text-success fs-1"></i>
+
+                    <h2 class="fw-bold mt-2">
+                        {{ total_treks }}
+                    </h2>
+
+                    <p class="mb-0 text-muted">
+                        Total Treks
+                    </p>
+
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Total Users</h3>
-            <p>{{ total_users }}</p>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+
+                    <i class="bi bi-people-fill text-primary fs-1"></i>
+
+                    <h2 class="fw-bold mt-2">
+                        {{ total_users }}
+                    </h2>
+
+                    <p class="mb-0 text-muted">
+                        Total Users
+                    </p>
+
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Total Staff</h3>
-            <p>{{ total_staff }}</p>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+
+                    <i class="bi bi-person-workspace text-warning fs-1"></i>
+
+                    <h2 class="fw-bold mt-2">
+                        {{ total_staff }}
+                    </h2>
+
+                    <p class="mb-0 text-muted">
+                        Total Staff
+                    </p>
+
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Total Bookings</h3>
-            <p>{{ total_bookings }}</p>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+
+                    <i class="bi bi-calendar-check text-danger fs-1"></i>
+
+                    <h2 class="fw-bold mt-2">
+                        {{ total_bookings }}
+                    </h2>
+
+                    <p class="mb-0 text-muted">
+                        Total Bookings
+                    </p>
+
+                </div>
+            </div>
         </div>
 
     </div>
-    {% endblock %}
- </body>
- </html>
+
+</div>
+
+{% endblock %}

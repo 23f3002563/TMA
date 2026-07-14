@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from app import db
-from app.models import User
+from app.models import User, StaffProfile
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -19,6 +19,11 @@ def login():
 
         if user:
 
+            # Store user information in session
+            session["user_id"] = user.id
+            session["role"] = user.role
+            session["name"] = user.name
+
             if user.role == "Admin":
                 return redirect(url_for("admin.dashboard"))
 
@@ -28,7 +33,10 @@ def login():
             else:
                 return redirect(url_for("user.dashboard"))
 
+        return "Invalid Email or Password"
+
     return render_template("auth/login.html")
+
 
 @auth_bp.route("/register", methods=["GET", "POST"])
 def register():
@@ -48,8 +56,29 @@ def register():
         )
 
         db.session.add(new_user)
+
+        db.session.flush()
+
+        if role == "staff":
+
+            staff_profile = StaffProfile(
+                user_id=new_user.id,
+                phone="",
+                experience=0,
+                specialization=""
+            )
+
+            db.session.add(staff_profile)
+
         db.session.commit()
 
         return redirect(url_for("auth.login"))
 
     return render_template("auth/register.html")
+
+@auth_bp.route("/logout")
+def logout():
+
+    session.clear()
+
+    return redirect(url_for("auth.login"))

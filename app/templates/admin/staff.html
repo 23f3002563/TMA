@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "admin/admin_base.html" %}
 
 {% block title %}
 Manage Staff
@@ -6,39 +6,88 @@ Manage Staff
 
 {% block content %}
 
-<h2>Manage Staff</h2>
+<div class="container-fluid">
 
-<table>
+    <!-- Page Heading -->
 
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Experience</th>
-        <th>Specialization</th>
-    </tr>
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-    {% for staff in staff_members %}
+        <h2 class="fw-bold">
+            <i class="bi bi-person-workspace text-success"></i>
+            Manage Staff
+        </h2>
 
-    <tr>
+    </div>
 
-        <td>{{ staff.id }}</td>
+    <!-- Staff Table -->
 
-        <td>{{ staff.user.name }}</td>
+    <div class="custom-card">
 
-        <td>{{ staff.user.email }}</td>
+        <div class="table-responsive">
 
-        <td>{{ staff.phone }}</td>
+            <table class="table table-hover align-middle">
 
-        <td>{{ staff.experience }} Years</td>
+                <thead class="table-success">
 
-        <td>{{ staff.specialization }}</td>
+                    <tr>
 
-    </tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Experience</th>
+                        <th>Specialization</th>
 
-    {% endfor %}
+                    </tr>
 
-</table>
+                </thead>
+
+                <tbody>
+
+                    {% for staff in staff_members %}
+
+                    <tr>
+
+                        <td>{{ staff.id }}</td>
+
+                        <td>{{ staff.user.name }}</td>
+
+                        <td>{{ staff.user.email }}</td>
+
+                        <td>{{ staff.phone }}</td>
+
+                        <td>
+
+                            <span class="badge bg-primary">
+
+                                {{ staff.experience }} Years
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="badge bg-success">
+
+                                {{ staff.specialization }}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

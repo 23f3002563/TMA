@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from app import db
-from app.models import Trek, Booking
+from app.models import User, StaffProfile, Trek, Booking
 
 staff_bp = Blueprint("staff", __name__, url_prefix="/staff")
 
@@ -37,10 +37,17 @@ def treks():
         treks=treks
     )
 
+@staff_bp.route("/participants/<int:trek_id>")
+def participants(trek_id):
 
-@staff_bp.route("/participants")
-def participants():
-    return render_template("staff/participants.html")
+    bookings = Booking.query.filter_by(
+        trek_id=trek_id
+    ).all()
+
+    return render_template(
+        "staff/participants.html",
+        bookings=bookings
+    )
 
 @staff_bp.route("/treks/update/<int:trek_id>", methods=["GET", "POST"])
 def update_trek(trek_id):
@@ -59,4 +66,26 @@ def update_trek(trek_id):
     return render_template(
         "staff/update_trek.html",
         trek=trek
+    )
+
+@staff_bp.route("/profile", methods=["GET", "POST"])
+def profile():
+
+    profile = StaffProfile.query.filter_by(
+        user_id=session["user_id"]
+    ).first()
+
+    if request.method == "POST":
+
+        profile.phone = request.form["phone"]
+        profile.experience = request.form["experience"]
+        profile.specialization = request.form["specialization"]
+
+        db.session.commit()
+
+        return redirect(url_for("staff.dashboard"))
+
+    return render_template(
+        "staff/profile.html",
+        profile=profile
     )

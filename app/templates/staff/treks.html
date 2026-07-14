@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "staff/base.html" %}
 
 {% block title %}
 Assigned Treks
@@ -6,42 +6,131 @@ Assigned Treks
 
 {% block content %}
 
-<h2>Assigned Treks</h2>
+<div class="container mt-5">
 
-<table>
+    <h2 class="text-center mb-4">
 
-    <tr>
-        <th>ID</th>
-        <th>Trek Name</th>
-        <th>Location</th>
-        <th>Difficulty</th>
-        <th>Duration</th>
-        <th>Available Slots</th>
-        <th>Status</th>
-    </tr>
+        <i class="bi bi-tree-fill text-success"></i>
+        Assigned Treks
 
-    {% for trek in treks %}
+    </h2>
 
-    <tr>
 
-        <td>{{ trek.id }}</td>
-        <td>{{ trek.trek_name }}</td>
-        <td>{{ trek.location }}</td>
-        <td>{{ trek.difficulty }}</td>
-        <td>{{ trek.duration }} Days</td>
-        <td>{{ trek.available_slots }}</td>
-        <td>{{ trek.status }}</td>
+    {% if treks %}
 
-    </tr>
+        {% for trek in treks %}
 
-    <td>
-        <a href="{{ url_for('staff.update_trek', trek_id=trek.id) }}">
-            Update
-        </a>
-    </td>
+        <div class="staff-trek-card shadow-sm rounded-4 mb-4">
 
-    {% endfor %}
+            <div class="staff-trek-item">
 
-</table>
+                <span>ID</span>
+
+                <h6>{{ trek.id }}</h6>
+
+            </div>
+
+
+
+            <div class="staff-trek-item">
+
+                <span>Trek Name</span>
+
+                <h6>{{ trek.trek_name }}</h6>
+
+            </div>
+
+
+
+            <div class="staff-trek-item">
+
+                <span>Location</span>
+
+                <h6>{{ trek.location }}</h6>
+
+            </div>
+
+
+
+            <div class="staff-trek-item">
+
+                <span>Difficulty</span>
+
+                <h6>{{ trek.difficulty }}</h6>
+
+            </div>
+
+
+
+            <div class="staff-trek-item">
+
+                <span>Duration</span>
+
+                <h6>{{ trek.duration }} Days</h6>
+
+            </div>
+
+
+
+            <div class="staff-trek-item">
+
+                <span>Slots</span>
+
+                <h6>{{ trek.available_slots }}</h6>
+
+            </div>
+
+
+
+            <div class="staff-trek-item">
+
+                <span>Status</span>
+
+                <span class="badge bg-success">
+
+                    {{ trek.status }}
+
+                </span>
+
+            </div>
+
+
+
+            <div class="staff-action">
+
+                <a href="{{ url_for('staff.update_trek', trek_id=trek.id) }}"
+                   class="btn btn-warning btn-sm">
+
+                    <i class="bi bi-pencil-square"></i>
+                    Update
+
+                </a>
+
+
+                <a href="{{ url_for('staff.participants', trek_id=trek.id) }}"
+                   class="btn btn-success btn-sm mt-2">
+
+                    <i class="bi bi-people-fill"></i>
+                    Participants
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="alert alert-info text-center">
+
+            No treks assigned yet.
+
+        </div>
+
+    {% endif %}
+
+</div>
 
 {% endblock %}

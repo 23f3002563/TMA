@@ -1,0 +1,96 @@
+{% extends "user/base.html" %}
+
+
+{% block title %}
+User Dashboard
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container mt-5">
+
+
+<h2 class="text-center">
+    User Dashboard
+</h2>
+
+
+
+<div class="row mt-5 justify-content-center g-4">
+
+
+    <!-- Treks Card -->
+
+    <div class="col-md-4">
+
+        <div class="card shadow p-4 text-center dashboard-card">
+
+
+            <h3>
+                <i class="bi bi-tree text-success"></i>
+                Treks
+            </h3>
+
+
+            <p>
+                Explore available trekking adventures
+            </p>
+
+
+            <a href="{{ url_for('user.treks') }}" 
+               class="btn btn-success">
+
+                View Treks
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- Booking Card -->
+
+    <div class="col-md-4">
+
+        <div class="card shadow p-4 text-center dashboard-card">
+
+
+            <h3>
+                <i class="bi bi-journal-check text-success"></i>
+                My Booking
+            </h3>
+
+
+            <p>
+                Manage your trekking bookings
+            </p>
+
+
+            <a href="{{ url_for('user.bookings') }}" 
+               class="btn btn-success">
+
+                View Booking
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+{% endblock %}

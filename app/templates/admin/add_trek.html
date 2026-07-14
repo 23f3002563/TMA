@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "admin/admin_base.html" %}
 
 {% block title %}
 Add Trek
@@ -6,31 +6,184 @@ Add Trek
 
 {% block content %}
 
-<h2>Add New Trek</h2>
+<div class="container-fluid">
 
-<form method="POST" class="auth-form">
+    <!-- Page Heading -->
 
-    <label>Trek Name</label>
-    <input type="text" name="trek_name" required>
+    <div class="page-title">
 
-    <label>Location</label>
-    <input type="text" name="location" required>
+        <h2>
+            <i class="bi bi-plus-circle-fill"></i>
+            Add New Trek
+        </h2>
 
-    <label>Difficulty</label>
-    <select name="difficulty">
-        <option>Easy</option>
-        <option>Moderate</option>
-        <option>Difficult</option>
-    </select>
+        <p>
+            Fill in the details below to create a new trek.
+        </p>
 
-    <label>Duration (Days)</label>
-    <input type="number" name="duration" required>
+    </div>
 
-    <label>Available Slots</label>
-    <input type="number" name="available_slots" required>
+    <div class="admin-form-card">
 
-    <button type="submit">Add Trek</button>
+        <form method="POST">
 
-</form>
+            <div class="row">
+
+                <!-- Trek Name -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Trek Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="trek_name"
+                        class="form-control"
+                        placeholder="Enter Trek Name"
+                        required>
+
+                </div>
+
+                <!-- Location -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        name="location"
+                        class="form-control"
+                        placeholder="Enter Location"
+                        required>
+
+                </div>
+
+                <!-- Difficulty -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Difficulty
+                    </label>
+
+                    <select
+                        name="difficulty"
+                        class="form-select">
+
+                        <option value="Easy">
+                            Easy
+                        </option>
+
+                        <option value="Moderate">
+                            Moderate
+                        </option>
+
+                        <option value="Difficult">
+                            Difficult
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Duration -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Duration (Days)
+                    </label>
+
+                    <input
+                        type="number"
+                        name="duration"
+                        class="form-control"
+                        placeholder="Number of Days"
+                        required>
+
+                </div>
+
+                <!-- Available Slots -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Available Slots
+                    </label>
+
+                    <input
+                        type="number"
+                        name="available_slots"
+                        class="form-control"
+                        placeholder="Available Slots"
+                        required>
+
+                </div>
+
+                <!-- Assign Staff -->
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">
+                        Assign Staff
+                    </label>
+
+                    <select
+                        name="staff_id"
+                        class="form-select">
+
+                        <option value="">
+                            Select Staff
+                        </option>
+
+                        {% for staff in staff_members %}
+
+                        <option value="{{ staff.id }}">
+
+                            {{ staff.name }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="d-flex gap-2">
+
+                <button
+                    type="submit"
+                    class="btn btn-success">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Add Trek
+
+                </button>
+
+                <a href="{{ url_for('admin.treks') }}"
+                   class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Cancel
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 {% endblock %}

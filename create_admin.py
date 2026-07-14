@@ -8,18 +8,18 @@ with app.app_context():
     admin = User.query.filter_by(email="admin@gmail.com").first()
 
     if not admin:
+
         admin = User(
             name="Admin",
             email="admin@gmail.com",
             password="admin123",
-            role="Admin",
-            is_active=True
+            role="Admin"
         )
 
         db.session.add(admin)
         db.session.commit()
 
-        print("Admin created successfully!")
+        print("Admin Created Successfully!")
 
     else:
-        print("Admin already exists!")
+        print("Admin Already Exists!")

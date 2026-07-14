@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "admin/admin_base.html" %}
 
 {% block title %}
 Manage Treks
@@ -6,46 +6,126 @@ Manage Treks
 
 {% block content %}
 
-<h2>Manage Treks</h2>
+<div class="container-fluid">
 
-<p style="text-align:center;">
-    <a href="{{ url_for('admin.add_trek') }}">Add New Trek</a>
-</p>
+    <!-- Page Header -->
 
-<table>
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <tr>
-        <th>ID</th>
-        <th>Trek Name</th>
-        <th>Location</th>
-        <th>Difficulty</th>
-        <th>Duration</th>
-        <th>Available Slots</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
+        <h2 class="fw-bold">
+            <i class="bi bi-tree-fill text-success"></i>
+            Manage Treks
+        </h2>
 
-    {% for trek in treks %}
+        <a href="{{ url_for('admin.add_trek') }}"
+           class="btn btn-success">
 
-    <tr>
+            <i class="bi bi-plus-circle"></i>
+            Add New Trek
 
-        <td>{{ trek.id }}</td>
-        <td>{{ trek.trek_name }}</td>
-        <td>{{ trek.location }}</td>
-        <td>{{ trek.difficulty }}</td>
-        <td>{{ trek.duration }} Days</td>
-        <td>{{ trek.available_slots }}</td>
-        <td>{{ trek.status }}</td>
+        </a>
 
-        <td>
-            <a href="{{ url_for('admin.edit_trek', trek_id=trek.id) }}">Edit</a> |
-            <a href="{{ url_for('admin.delete_trek', trek_id=trek.id) }}">Delete</a>
-        </td>
+    </div>
 
-    </tr>
+    <!-- Trek Table -->
 
-    {% endfor %}
+    <div class="custom-card">
 
-</table>
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-success">
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Trek Name</th>
+                        <th>Location</th>
+                        <th>Difficulty</th>
+                        <th>Duration</th>
+                        <th>Slots</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for trek in treks %}
+
+                    <tr>
+
+                        <td>{{ trek.id }}</td>
+
+                        <td>{{ trek.trek_name }}</td>
+
+                        <td>{{ trek.location }}</td>
+
+                        <td>{{ trek.difficulty }}</td>
+
+                        <td>{{ trek.duration }} Days</td>
+
+                        <td>{{ trek.available_slots }}</td>
+
+                        <td>
+
+                            {% if trek.status == "Open" %}
+
+                                <span class="badge bg-success">
+                                    {{ trek.status }}
+                                </span>
+
+                            {% elif trek.status == "Closed" %}
+
+                                <span class="badge bg-danger">
+                                    {{ trek.status }}
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-secondary">
+                                    {{ trek.status }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <a href="{{ url_for('admin.edit_trek', trek_id=trek.id) }}"
+                               class="btn btn-sm btn-outline-primary">
+
+                                <i class="bi bi-pencil-square"></i>
+                                Edit
+
+                            </a>
+
+                            <a href="{{ url_for('admin.delete_trek', trek_id=trek.id) }}"
+                               class="btn btn-sm btn-outline-danger">
+
+                                <i class="bi bi-trash"></i>
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

@@ -1,0 +1,94 @@
+{% extends "user/base.html" %}
+
+
+{% block title %}
+My Profile
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container mt-5">
+
+
+    <h2 class="text-center mb-4">
+        <i class="bi bi-person-circle text-success"></i>
+        My Profile
+    </h2>
+
+
+    <div class="row justify-content-center g-4">
+
+
+        <!-- Name Card -->
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 text-center p-4 profile-card">
+
+                <i class="bi bi-person-fill text-success fs-1"></i>
+
+                <h5 class="mt-3">
+                    Name
+                </h5>
+
+                <p>
+                    {{ user.name }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Email Card -->
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 text-center p-4 profile-card">
+
+                <i class="bi bi-envelope-fill text-success fs-1"></i>
+
+                <h5 class="mt-3">
+                    Email
+                </h5>
+
+                <p>
+                    {{ user.email }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- Role Card -->
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 text-center p-4 profile-card">
+
+                <i class="bi bi-person-badge-fill text-success fs-1"></i>
+
+                <h5 class="mt-3">
+                    Role
+                </h5>
+
+                <p>
+                    {{ user.role }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

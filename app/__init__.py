@@ -25,6 +25,7 @@ def create_app():
     from app.routes.admin import admin_bp
     from app.routes.staff import staff_bp
     from app.routes.trek import trek_bp
+    from app.routes.user import user_bp
 
     # Register Blueprints
     app.register_blueprint(home_bp)
@@ -32,5 +33,6 @@ def create_app():
     app.register_blueprint(admin_bp)
     app.register_blueprint(staff_bp)
     app.register_blueprint(trek_bp)
+    app.register_blueprint(user_bp)
 
     return app

@@ -1,0 +1,112 @@
+{% extends "user/base.html" %}
+
+
+{% block title %}
+My Bookings
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container mt-5">
+
+
+    <h2 class="text-center mb-4">
+
+        <i class="bi bi-journal-check text-success"></i>
+        My Bookings
+
+    </h2>
+
+
+
+    {% for booking in bookings %}
+
+
+    <div class="booking-card shadow-sm rounded-4 mb-3">
+
+
+        <div class="booking-item">
+
+            <span>Booking ID</span>
+
+            <h6>
+                {{ booking.id }}
+            </h6>
+
+        </div>
+
+
+
+
+        <div class="booking-item">
+
+            <span>Trek</span>
+
+            <h6>
+                {{ booking.trek.trek_name }}
+            </h6>
+
+        </div>
+
+
+
+
+        <div class="booking-item">
+
+            <span>Date</span>
+
+            <h6>
+                {{ booking.booking_date }}
+            </h6>
+
+        </div>
+
+
+
+
+        <div class="booking-item">
+
+            <span>Status</span>
+
+            <h6>
+
+                <span class="badge bg-success">
+                    {{ booking.booking_status }}
+                </span>
+
+            </h6>
+
+        </div>
+
+
+
+
+        <div class="booking-action">
+
+
+            <a href="{{ url_for('user.cancel_booking', booking_id=booking.id) }}"
+               class="btn btn-danger">
+
+                <i class="bi bi-x-circle"></i>
+                Cancel
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+    {% endfor %}
+
+
+
+</div>
+
+
+{% endblock %}

@@ -78,12 +78,15 @@ def add_trek():
 
     if request.method == "POST":
 
+        staff_id = request.form["staff_id"]
+
         trek = Trek(
             trek_name=request.form["trek_name"],
             location=request.form["location"],
             difficulty=request.form["difficulty"],
             duration=request.form["duration"],
-            available_slots=request.form["available_slots"]
+            available_slots=request.form["available_slots"],
+            staff_id=staff_id
         )
 
         db.session.add(trek)
@@ -91,7 +94,12 @@ def add_trek():
 
         return redirect(url_for("admin.treks"))
 
-    return render_template("admin/add_trek.html")
+    staff_members = User.query.filter_by(role="staff").all()
+
+    return render_template(
+        "admin/add_trek.html",
+        staff_members=staff_members
+    )
 
 @admin_bp.route("/treks/edit/<int:trek_id>", methods=["GET", "POST"])
 def edit_trek(trek_id):

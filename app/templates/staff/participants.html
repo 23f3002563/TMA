@@ -1,37 +1,95 @@
-{% extends "base.html" %}
+{% extends "staff/base.html" %}
 
 {% block title %}
-Participants
+Registered Participants
 {% endblock %}
 
 {% block content %}
 
-<h2>Participants</h2>
+<div class="container mt-5">
 
-<table>
+    <h2 class="text-center mb-4">
 
-    <tr>
-        <th>Booking ID</th>
-        <th>User ID</th>
-        <th>Trek ID</th>
-        <th>Booking Date</th>
-        <th>Status</th>
-    </tr>
+        <i class="bi bi-people-fill text-success"></i>
+        Registered Participants
 
-    {% for booking in bookings %}
+    </h2>
 
-    <tr>
 
-        <td>{{ booking.id }}</td>
-        <td>{{ booking.user_id }}</td>
-        <td>{{ booking.trek_id }}</td>
-        <td>{{ booking.booking_date }}</td>
-        <td>{{ booking.booking_status }}</td>
+    {% if bookings %}
 
-    </tr>
+        {% for booking in bookings %}
 
-    {% endfor %}
+        <div class="participant-card shadow-sm rounded-4 mb-3">
 
-</table>
+
+            <div class="participant-item">
+
+                <span>Booking ID</span>
+
+                <h6>{{ booking.id }}</h6>
+
+            </div>
+
+
+
+            <div class="participant-item">
+
+                <span>Name</span>
+
+                <h6>{{ booking.user.name }}</h6>
+
+            </div>
+
+
+
+            <div class="participant-item">
+
+                <span>Email</span>
+
+                <h6>{{ booking.user.email }}</h6>
+
+            </div>
+
+
+
+            <div class="participant-item">
+
+                <span>Booking Date</span>
+
+                <h6>{{ booking.booking_date }}</h6>
+
+            </div>
+
+
+
+            <div class="participant-item">
+
+                <span>Status</span>
+
+                <span class="badge bg-success">
+
+                    {{ booking.booking_status }}
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="alert alert-info text-center">
+
+            No participants registered for this trek.
+
+        </div>
+
+    {% endif %}
+
+</div>
 
 {% endblock %}
