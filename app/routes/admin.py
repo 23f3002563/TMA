@@ -32,6 +32,7 @@ def users():
 
     if search:
         users = User.query.filter(
+            User.role == "user",
             User.name.ilike(f"%{search}%")
         ).all()
     else:
